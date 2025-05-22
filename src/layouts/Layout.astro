@@ -1,0 +1,57 @@
+---
+import "@/styles/globals.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="pretty website for a pretty girl" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="dark flex flex-col min-h-screen font-sans antialiased bg-[#f7bbcd]"
+  >
+    <main
+      class="flex items-center justify-center flex-grow scrollbar-thumb-primary scrollbar-thin scrollbar-track-secondary"
+    >
+      <slot />
+    </main>
+  </body>
+</html>
+<style is:global>
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+</style>
+<script is:inline>
+  function setTheme(document) {
+    const theme = localStorage.getItem("theme") || "light";
+    document.documentElement.classList[theme === "dark" ? "add" : "remove"](
+      "dark"
+    );
+  }
+
+  setTheme(document);
+
+  document.addEventListener("astro:before-swap", (event) => {
+    setTheme(event.newDocument);
+  });
+</script>
