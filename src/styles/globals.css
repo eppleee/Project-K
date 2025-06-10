@@ -8,6 +8,40 @@ body {
   padding: 0;
 }
 
+/* Code font styles */
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+/* Theme styles */
+:root {
+  color-scheme: light dark;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+:root:not(.dark) {
+  color-scheme: light;
+}
+
+/* Light mode colors */
+body {
+  @apply bg-white text-white transition-colors;
+}
+
+/* Dark mode colors */
+:root.dark body {
+  @apply bg-[#aa0052] text-gray-900;
+}
+
+/* Link colors */
+a {
+  @apply transition-colors;
+}
+
 @layer base {
   :root {
     --background: 333 100% 30.7%;
@@ -64,9 +98,6 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-}
-
-@layer base {
   * {
     @apply border-border;
   }
@@ -74,25 +105,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
-
-nav {
-  background-color: #f8f8f8;
-  padding: 0.05px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-}
-
-
-.header-content {
-  list-style-type: none;
-  margin-right: 20px;
-  padding: 0;
-  display: flex;
-  justify-content: left;
-  gap: 20px;
-  color: #9e0652;
 }
